@@ -1,4 +1,6 @@
-"use strict";
+import './styles.scss';
+
+'use strict';
 
 /**
  * Portfolio UI controller
@@ -11,40 +13,40 @@
  */
 
 const SELECTORS = {
-  reveal: ".reveal",
-  sectionTitles: ".st2",
+  reveal: '.reveal',
+  sectionTitles: '.st2',
   anchorLinks: 'a[href^="#"]',
-  languageButtons: "[data-l]",
-  themeButtons: ".theme-btn",
-  mobileMenu: "#mm",
-  hamburger: "#hb",
-  scrollProgress: "#sp",
-  backToTop: "#btt",
+  languageButtons: '[data-l]',
+  themeButtons: '.theme-btn',
+  mobileMenu: '#mm',
+  hamburger: '#hb',
+  scrollProgress: '#sp',
+  backToTop: '#btt',
 };
 
 const UI = {
-  flareClass: "flare",
-  visibleClass: "visible",
-  openClass: "open",
-  activeClass: "active",
-  darkTheme: "dark",
-  lightTheme: "light",
+  flareClass: 'flare',
+  visibleClass: 'visible',
+  openClass: 'open',
+  activeClass: 'active',
+  darkTheme: 'dark',
+  lightTheme: 'light',
   flareDurationMs: 1500,
   backToTopThreshold: 400,
 };
 
 const STORAGE_KEYS = {
-  theme: "portfolio-theme",
-  themeMode: "portfolio-theme-mode",
+  theme: 'portfolio-theme',
+  themeMode: 'portfolio-theme-mode',
 };
 
 const THEME_MODE = {
-  auto: "auto",
-  manual: "manual",
+  auto: 'auto',
+  manual: 'manual',
 };
 
 const URL_PARAMS = {
-  theme: "theme",
+  theme: 'theme',
 };
 
 let lastFlaredTitle = null;
@@ -98,12 +100,11 @@ const getInitialThemeState = () => {
   return { mode: THEME_MODE.auto, theme: getSystemTheme() };
 };
 
-const shouldForceSystemThemeSync = () =>
-  isLocalPreviewHost() && getUrlThemeOverride() === null;
+const shouldForceSystemThemeSync = () => isLocalPreviewHost() && getUrlThemeOverride() === null;
 
 const getUrlThemeOverride = () => {
   const searchParams = new URLSearchParams(window.location.search);
-  const themeParam = (searchParams.get(URL_PARAMS.theme) || "").toLowerCase();
+  const themeParam = (searchParams.get(URL_PARAMS.theme) || '').toLowerCase();
 
   if (
     themeParam === UI.darkTheme ||
@@ -118,28 +119,26 @@ const getUrlThemeOverride = () => {
 
 const isLocalPreviewHost = () => {
   const hostname = window.location.hostname;
-  return hostname === "127.0.0.1" || hostname === "localhost";
+  return hostname === '127.0.0.1' || hostname === 'localhost';
 };
 
 const getInitialLanguage = () => getSystemLanguage();
 
 const getSystemTheme = () => {
-  if (typeof window.matchMedia !== "function") {
+  if (typeof window.matchMedia !== 'function') {
     return UI.darkTheme;
   }
 
-  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
   return prefersDark ? UI.darkTheme : UI.lightTheme;
 };
 
 const getSystemLanguage = () => {
   const primaryLanguage =
-    (navigator.languages && navigator.languages[0]) || navigator.language || "";
-  const normalizedLanguage = primaryLanguage.toLowerCase().replace("_", "-");
+    (navigator.languages && navigator.languages[0]) || navigator.language || '';
+  const normalizedLanguage = primaryLanguage.toLowerCase().replace('_', '-');
 
-  return normalizedLanguage === "es-es" || normalizedLanguage === "es"
-    ? "es"
-    : "en";
+  return normalizedLanguage === 'es-es' || normalizedLanguage === 'es' ? 'es' : 'en';
 };
 
 const getStoredPreference = (key) => {
@@ -164,7 +163,7 @@ const initRevealObserver = () => {
 
   const observer = new IntersectionObserver(handleRevealIntersect, {
     threshold: 0.08,
-    rootMargin: "0px 0px -30px 0px",
+    rootMargin: '0px 0px -30px 0px',
   });
 
   revealElements.forEach((element) => observer.observe(element));
@@ -184,16 +183,12 @@ const initScrollUI = () => {
 
   if (!progressBar || !backToTopButton) return;
 
-  window.addEventListener(
-    "scroll",
-    () => onScroll(progressBar, backToTopButton),
-    {
-      passive: true,
-    },
-  );
+  window.addEventListener('scroll', () => onScroll(progressBar, backToTopButton), {
+    passive: true,
+  });
 
-  backToTopButton.addEventListener("click", () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+  backToTopButton.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 
   onScroll(progressBar, backToTopButton);
@@ -248,11 +243,7 @@ const triggerClosestTitleFlare = () => {
   });
 
   const maxDistance = window.innerHeight * 0.45;
-  if (
-    !candidate ||
-    candidate === lastFlaredTitle ||
-    bestDistance >= maxDistance
-  ) {
+  if (!candidate || candidate === lastFlaredTitle || bestDistance >= maxDistance) {
     return;
   }
 
@@ -276,15 +267,15 @@ const initSmoothAnchors = () => {
   if (!links.length) return;
 
   links.forEach((link) => {
-    link.addEventListener("click", (event) => {
-      const targetId = link.getAttribute("href");
-      if (!targetId || targetId === "#") return;
+    link.addEventListener('click', (event) => {
+      const targetId = link.getAttribute('href');
+      if (!targetId || targetId === '#') return;
 
       const target = document.querySelector(targetId);
       if (!target) return;
 
       event.preventDefault();
-      target.scrollIntoView({ behavior: "smooth" });
+      target.scrollIntoView({ behavior: 'smooth' });
       closeMobileMenu();
     });
   });
@@ -295,7 +286,7 @@ const initLanguageToggle = () => {
   if (!languageButtons.length) return;
 
   languageButtons.forEach((button) => {
-    button.addEventListener("click", () => {
+    button.addEventListener('click', () => {
       const lang = button.dataset.l;
       if (!lang) return;
 
@@ -305,7 +296,7 @@ const initLanguageToggle = () => {
 };
 
 const applyLanguage = (lang) => {
-  document.documentElement.setAttribute("data-lang", lang);
+  document.documentElement.setAttribute('data-lang', lang);
 
   document
     .querySelectorAll(SELECTORS.languageButtons)
@@ -320,17 +311,16 @@ const initThemeToggle = () => {
   if (!themeButtons.length) return;
 
   themeButtons.forEach((button) => {
-    button.addEventListener("click", () => {
+    button.addEventListener('click', () => {
       if (shouldForceSystemThemeSync()) {
-        const currentTheme = document.documentElement.getAttribute("data-theme");
-        const nextTheme =
-          currentTheme === UI.lightTheme ? UI.darkTheme : UI.lightTheme;
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const nextTheme = currentTheme === UI.lightTheme ? UI.darkTheme : UI.lightTheme;
         themeMode = THEME_MODE.manual;
         applyTheme(nextTheme);
         return;
       }
 
-      const currentTheme = document.documentElement.getAttribute("data-theme");
+      const currentTheme = document.documentElement.getAttribute('data-theme');
 
       if (themeMode === THEME_MODE.auto) {
         const nextTheme = UI.lightTheme;
@@ -357,19 +347,19 @@ const initThemeToggle = () => {
 };
 
 const applyTheme = (theme) => {
-  document.documentElement.setAttribute("data-theme", theme);
+  document.documentElement.setAttribute('data-theme', theme);
 
   if (themeMode === THEME_MODE.auto) {
-    updateThemeButtons("🌓", "AUTO");
+    updateThemeButtons('🌓', 'AUTO');
     return;
   }
 
   if (theme === UI.lightTheme) {
-    updateThemeButtons("☀️", "LIGHT");
+    updateThemeButtons('☀️', 'LIGHT');
     return;
   }
 
-  updateThemeButtons("🌙", "DARK");
+  updateThemeButtons('🌙', 'DARK');
 };
 
 const updateThemeButtons = (icon, label) => {
@@ -379,9 +369,9 @@ const updateThemeButtons = (icon, label) => {
 };
 
 const initSystemThemeSync = () => {
-  if (typeof window.matchMedia !== "function") return;
+  if (typeof window.matchMedia !== 'function') return;
 
-  const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+  const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
   const handleSystemThemeChange = (event) => {
     if (themeMode !== THEME_MODE.auto && !shouldForceSystemThemeSync()) return;
     if (shouldForceSystemThemeSync()) {
@@ -395,16 +385,16 @@ const initSystemThemeSync = () => {
     applyTheme(getSystemTheme());
   };
 
-  if (typeof mediaQuery.addEventListener === "function") {
-    mediaQuery.addEventListener("change", handleSystemThemeChange);
-  } else if (typeof mediaQuery.addListener === "function") {
+  if (typeof mediaQuery.addEventListener === 'function') {
+    mediaQuery.addEventListener('change', handleSystemThemeChange);
+  } else if (typeof mediaQuery.addListener === 'function') {
     mediaQuery.addListener(handleSystemThemeChange);
   }
 
-  window.addEventListener("focus", syncOnWindowActivity);
-  window.addEventListener("pageshow", syncOnWindowActivity);
-  document.addEventListener("visibilitychange", () => {
-    if (document.visibilityState !== "visible") return;
+  window.addEventListener('focus', syncOnWindowActivity);
+  window.addEventListener('pageshow', syncOnWindowActivity);
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState !== 'visible') return;
     syncOnWindowActivity();
   });
 };
@@ -414,18 +404,12 @@ const initMobileMenu = () => {
   const menu = document.querySelector(SELECTORS.mobileMenu);
   if (!hamburger || !menu) return;
 
-  hamburger.addEventListener("click", () => {
+  hamburger.addEventListener('click', () => {
     const isOpen = hamburger.classList.toggle(UI.openClass);
     menu.classList.toggle(UI.openClass, isOpen);
-    hamburger.setAttribute("aria-expanded", String(isOpen));
-    hamburger.setAttribute(
-      "aria-label",
-      isOpen ? "Close navigation menu" : "Open navigation menu",
-    );
-    hamburger.setAttribute(
-      "title",
-      isOpen ? "Close navigation menu" : "Open navigation menu",
-    );
+    hamburger.setAttribute('aria-expanded', String(isOpen));
+    hamburger.setAttribute('aria-label', isOpen ? 'Close navigation menu' : 'Open navigation menu');
+    hamburger.setAttribute('title', isOpen ? 'Close navigation menu' : 'Open navigation menu');
   });
 };
 
@@ -436,9 +420,9 @@ const closeMobileMenu = () => {
 
   hamburger.classList.remove(UI.openClass);
   menu.classList.remove(UI.openClass);
-  hamburger.setAttribute("aria-expanded", "false");
-  hamburger.setAttribute("aria-label", "Open navigation menu");
-  hamburger.setAttribute("title", "Open navigation menu");
+  hamburger.setAttribute('aria-expanded', 'false');
+  hamburger.setAttribute('aria-label', 'Open navigation menu');
+  hamburger.setAttribute('title', 'Open navigation menu');
 };
 
-document.addEventListener("DOMContentLoaded", init);
+document.addEventListener('DOMContentLoaded', init);
