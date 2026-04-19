@@ -3,7 +3,7 @@ import checker from 'vite-plugin-checker';
 import sitemap from 'vite-plugin-sitemap';
 
 export default defineConfig(({ command }) => ({
-  base: command === 'build' ? process.env.BASE_PATH || '/Portfolio/' : '/',
+  base: command === 'build' ? process.env.BASE_PATH || '/' : '/',
   plugins: [
     checker(),
     sitemap({
