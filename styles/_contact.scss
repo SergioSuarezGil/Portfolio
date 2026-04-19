@@ -86,7 +86,9 @@
   }
 }
 
-.h-captcha {
+.contact__captcha {
+  display: flex;
+  justify-content: center;
   margin-bottom: 18px;
 }
 
