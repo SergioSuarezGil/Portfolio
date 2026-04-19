@@ -1,0 +1,169 @@
+@use 'mixins' as m;
+
+.contact {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+
+  @include m.bp-sm {
+    grid-template-columns: 1fr;
+  }
+
+  &__intro {
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    h3 {
+      font-size: 28px;
+      font-weight: 800;
+      margin-bottom: 12px;
+      letter-spacing: -0.5px;
+      line-height: 1.2;
+    }
+
+    > p {
+      color: var(--ts);
+      font-size: 15px;
+      line-height: 1.75;
+      margin-bottom: 24px;
+    }
+  }
+
+  &__socials {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+
+    @include m.bp-sm {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__form {
+    padding: 32px;
+  }
+
+  &__honeypot {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  &__status {
+    margin-top: 14px;
+    font-size: 13px;
+    min-height: 18px;
+    line-height: 1.5;
+
+    &-text {
+      display: none;
+    }
+
+    &[data-state='sending'] .contact__status-text--sending,
+    &[data-state='success'] .contact__status-text--success,
+    &[data-state='error'] .contact__status-text--error,
+    &[data-state='captcha'] .contact__status-text--captcha {
+      display: inline;
+    }
+
+    &[data-state='sending'] {
+      color: var(--tm);
+    }
+
+    &[data-state='success'] {
+      color: #3ecf7a;
+    }
+
+    &[data-state='error'],
+    &[data-state='captcha'] {
+      color: #ff6b6b;
+    }
+  }
+}
+
+.h-captcha {
+  margin-bottom: 18px;
+}
+
+.social-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: var(--tp);
+  padding: 10px 12px;
+  border-radius: var(--rs);
+  background: rgba(59, 158, 255, 0.03);
+  border: 1px solid var(--gb);
+  transition: all 0.3s;
+  font-size: 14px;
+
+  &:hover {
+    border-color: var(--ac);
+    background: rgba(59, 158, 255, 0.06);
+    transform: translateY(-1px);
+  }
+
+  &__icon {
+    font-size: 16px;
+    width: 28px;
+    text-align: center;
+    flex-shrink: 0;
+  }
+
+  &__name {
+    font-weight: 700;
+    font-size: 12px;
+  }
+
+  &__handle {
+    font-size: 10px;
+    color: var(--ts);
+    font-family: var(--m);
+  }
+}
+
+.form-group {
+  margin-bottom: 18px;
+
+  label {
+    display: block;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--tp);
+    margin-bottom: 6px;
+  }
+
+  input,
+  textarea {
+    width: 100%;
+    padding: 13px 14px;
+    border-radius: var(--rs);
+    border: 1px solid rgba(59, 158, 255, 0.12);
+    background: var(--ib);
+    color: var(--tp);
+    font-family: var(--f);
+    font-size: 15px;
+    transition: all 0.3s;
+    outline: none;
+
+    &::placeholder {
+      color: var(--tm);
+    }
+
+    &:focus {
+      border-color: var(--ac);
+      box-shadow: 0 0 0 3px var(--ad);
+    }
+  }
+
+  textarea {
+    min-height: 80px;
+    resize: vertical;
+  }
+}

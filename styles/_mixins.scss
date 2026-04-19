@@ -1,0 +1,24 @@
+$bp-md: 960px;
+$bp-sm: 640px;
+
+@mixin bp-md {
+  @media (max-width: $bp-md) {
+    @content;
+  }
+}
+
+@mixin bp-sm {
+  @media (max-width: $bp-sm) {
+    @content;
+  }
+}
+
+@mixin backdrop($blur: 24px, $saturate: null) {
+  @if $saturate {
+    -webkit-backdrop-filter: blur($blur) saturate($saturate);
+    backdrop-filter: blur($blur) saturate($saturate);
+  } @else {
+    -webkit-backdrop-filter: blur($blur);
+    backdrop-filter: blur($blur);
+  }
+}

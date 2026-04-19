@@ -1,0 +1,70 @@
+@use 'mixins' as m;
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+
+  @include m.bp-md {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include m.bp-sm {
+    grid-template-columns: 1fr;
+  }
+}
+
+.skill-card {
+  padding: 22px;
+
+  &__title {
+    font-family: var(--m);
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--ac);
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--gb);
+  }
+
+  &__items {
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+  }
+
+  &__row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__name {
+    font-size: 14px;
+    font-weight: 500;
+  }
+}
+
+.skill-bar {
+  width: 80px;
+  height: 3px;
+  background: rgba(59, 158, 255, 0.06);
+  border-radius: 2px;
+  overflow: hidden;
+
+  &__fill {
+    height: 100%;
+    border-radius: 2px;
+    background: linear-gradient(90deg, var(--bm), var(--ac));
+  }
+}
+
+$bar-widths: 95, 92, 88, 85, 82, 80, 78, 75, 74, 72, 70, 65, 55;
+
+@each $w in $bar-widths {
+  .skill-bar__fill--#{$w} {
+    width: $w * 1%;
+  }
+}
