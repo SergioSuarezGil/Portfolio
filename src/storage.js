@@ -1,7 +1,7 @@
 export const getStoredPreference = (key) => {
   try {
     return window.localStorage.getItem(key);
-  } catch (_error) {
+  } catch {
     return null;
   }
 };
@@ -9,7 +9,7 @@ export const getStoredPreference = (key) => {
 export const setStoredPreference = (key, value) => {
   try {
     window.localStorage.setItem(key, value);
-  } catch (_error) {
+  } catch {
     // Ignore storage errors (private mode, blocked storage, etc.)
   }
 };

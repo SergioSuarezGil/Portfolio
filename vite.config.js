@@ -1,3 +1,4 @@
+import process from 'node:process';
 import { defineConfig } from 'vite';
 import checker from 'vite-plugin-checker';
 import sitemap from 'vite-plugin-sitemap';

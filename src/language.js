@@ -20,6 +20,12 @@ export const getInitialLanguage = () => {
 export const applyLanguage = (lang) => {
   document.documentElement.setAttribute('data-lang', lang);
 
+  document.querySelectorAll('[data-placeholder-en][data-placeholder-es]').forEach((field) => {
+    const placeholder = field.getAttribute(`data-placeholder-${lang}`);
+    if (!placeholder) return;
+    field.setAttribute('placeholder', placeholder);
+  });
+
   document
     .querySelectorAll(SELECTORS.languageButtons)
     .forEach((button) => button.classList.remove(UI.activeClass));

@@ -8,9 +8,16 @@ import { applyInitialTheme, initThemeToggle, initSystemThemeSync } from './src/t
 import { initMobileMenu } from './src/menu.js';
 import { initContactForm } from './src/contact.js';
 
+const applyCurrentYear = () => {
+  const yearEl = document.querySelector('#current-year');
+  if (!yearEl) return;
+  yearEl.textContent = new Date().getFullYear();
+};
+
 const init = () => {
   applyLanguage(getInitialLanguage());
   applyInitialTheme();
+  applyCurrentYear();
   initRevealObserver();
   initSmoothAnchors();
   initScrollUI();

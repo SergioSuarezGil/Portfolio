@@ -23,8 +23,7 @@ const isLocalPreviewHost = () => {
   return hostname === '127.0.0.1' || hostname === 'localhost';
 };
 
-const shouldForceSystemThemeSync = () =>
-  isLocalPreviewHost() && getUrlThemeOverride() === null;
+const shouldForceSystemThemeSync = () => isLocalPreviewHost() && getUrlThemeOverride() === null;
 
 const getSystemTheme = () => {
   if (typeof window.matchMedia !== 'function') {

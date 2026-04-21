@@ -19,8 +19,7 @@ const setStatus = (statusEl, state) => {
 
 const applyCaptchaTheme = (captchaEl) => {
   if (!captchaEl) return;
-  const currentTheme =
-    document.documentElement.getAttribute('data-theme') || UI.darkTheme;
+  const currentTheme = document.documentElement.getAttribute('data-theme') || UI.darkTheme;
   captchaEl.setAttribute('data-theme', currentTheme);
 };
 
@@ -49,9 +48,7 @@ export const initContactForm = () => {
 
     if (!form.reportValidity()) return;
 
-    const captchaField = form.querySelector(
-      'textarea[name="h-captcha-response"]',
-    );
+    const captchaField = form.querySelector('textarea[name="h-captcha-response"]');
     if (!captchaField || !captchaField.value) {
       setStatus(statusEl, 'captcha');
       return;
