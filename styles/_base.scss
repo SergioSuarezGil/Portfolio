@@ -10,6 +10,8 @@
 
 html {
   scroll-behavior: smooth;
+  background: var(--bg);
+  transition: background 0.4s;
 }
 
 body {
@@ -17,6 +19,8 @@ body {
   background: var(--bg);
   color: var(--tp);
   overflow-x: hidden;
+  min-height: 100vh;
+  min-height: 100dvh;
   line-height: 1.7;
   font-size: 17px;
   transition:
