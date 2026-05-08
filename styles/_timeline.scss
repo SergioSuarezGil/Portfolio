@@ -7,10 +7,11 @@
   &::before {
     content: '';
     position: absolute;
-    left: 5px;
+    left: 4px;
     top: 8px;
     bottom: 0;
-    width: 1px;
+    width: 3px;
+    border-radius: 2px;
     background: linear-gradient(180deg, var(--ac), rgba(59, 158, 255, 0.05));
   }
 
@@ -89,6 +90,53 @@
     color: var(--ts);
     line-height: 1.75;
     margin-bottom: 12px;
+  }
+
+  &__projects {
+    display: grid;
+    gap: 12px;
+    margin-top: 14px;
+  }
+}
+
+.timeline-project {
+  position: relative;
+  padding: 16px;
+  border: 1px solid var(--gb);
+  border-radius: 12px;
+  background: rgba(59, 158, 255, 0.035);
+
+  &__head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 4px;
+  }
+
+  &__title {
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: -0.15px;
+  }
+
+  &__date {
+    font-family: var(--m);
+    font-size: 9px;
+    color: var(--ac);
+    letter-spacing: 0.8px;
+    background: var(--ad);
+    padding: 3px 8px;
+    border-radius: 6px;
+    border: 1px solid rgba(59, 158, 255, 0.1);
+  }
+
+  &__role {
+    color: var(--ab);
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 6px;
   }
 }
 

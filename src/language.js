@@ -1,4 +1,4 @@
-import { SELECTORS, STORAGE_KEYS, UI } from './constants.js';
+import { SELECTORS, STORAGE_KEYS, UI, URL_PARAMS } from './constants.js';
 import { getStoredPreference, setStoredPreference } from './storage.js';
 
 const SUPPORTED_LANGUAGES = ['en', 'es'];
@@ -11,7 +11,18 @@ export const getSystemLanguage = () => {
   return normalizedLanguage === 'es-es' || normalizedLanguage === 'es' ? 'es' : 'en';
 };
 
+const getUrlLanguageOverride = () => {
+  const searchParams = new URLSearchParams(window.location.search);
+  const langParam = (searchParams.get(URL_PARAMS.language) || '').toLowerCase();
+  return SUPPORTED_LANGUAGES.includes(langParam) ? langParam : null;
+};
+
 export const getInitialLanguage = () => {
+  const urlLang = getUrlLanguageOverride();
+  if (urlLang) {
+    setStoredPreference(STORAGE_KEYS.language, urlLang);
+    return urlLang;
+  }
   const stored = getStoredPreference(STORAGE_KEYS.language);
   if (SUPPORTED_LANGUAGES.includes(stored)) return stored;
   return getSystemLanguage();
@@ -19,6 +30,7 @@ export const getInitialLanguage = () => {
 
 export const applyLanguage = (lang) => {
   document.documentElement.setAttribute('data-lang', lang);
+  document.documentElement.setAttribute('lang', lang);
 
   document.querySelectorAll('[data-placeholder-en][data-placeholder-es]').forEach((field) => {
     const placeholder = field.getAttribute(`data-placeholder-${lang}`);

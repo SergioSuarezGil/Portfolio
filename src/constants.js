@@ -35,6 +35,7 @@ export const THEME_MODE = {
 
 export const URL_PARAMS = {
   theme: 'theme',
+  language: 'lang',
 };
 
 export const WEB3FORMS = {

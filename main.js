@@ -7,6 +7,8 @@ import { initLanguageToggle, applyLanguage, getInitialLanguage } from './src/lan
 import { applyInitialTheme, initThemeToggle, initSystemThemeSync } from './src/theme.js';
 import { initMobileMenu } from './src/menu.js';
 import { initContactForm } from './src/contact.js';
+import { initProjectGallery } from './src/projects.js';
+import { initTalkVideos } from './src/talks.js';
 
 const applyCurrentYear = () => {
   const yearEl = document.querySelector('#current-year');
@@ -37,7 +39,7 @@ const initAnalyticsTracking = () => {
     }
 
     if (href.startsWith('#')) {
-      if (href === '#contact' || href === '#exp') {
+      if (href === '#contact' || href === '#exp' || href === '#projects' || href === '#talks') {
         trackEvent('navigation_click', {
           link_text: text || href,
           link_url: href,
@@ -90,6 +92,8 @@ const init = () => {
   initSystemThemeSync();
   initMobileMenu();
   initContactForm();
+  initProjectGallery();
+  initTalkVideos();
 };
 
 document.addEventListener('DOMContentLoaded', init);

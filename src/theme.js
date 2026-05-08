@@ -3,6 +3,21 @@ import { getStoredPreference, setStoredPreference } from './storage.js';
 
 let themeMode = THEME_MODE.auto;
 
+const META_THEME_COLOR = {
+  [UI.darkTheme]: '#020610',
+  [UI.lightTheme]: '#f0f4f9',
+};
+
+const updateMetaThemeColor = (theme) => {
+  let meta = document.querySelector('meta[name="theme-color"]:not([media])');
+  if (!meta) {
+    meta = document.createElement('meta');
+    meta.setAttribute('name', 'theme-color');
+    document.head.appendChild(meta);
+  }
+  meta.setAttribute('content', META_THEME_COLOR[theme] || META_THEME_COLOR[UI.darkTheme]);
+};
+
 const getUrlThemeOverride = () => {
   const searchParams = new URLSearchParams(window.location.search);
   const themeParam = (searchParams.get(URL_PARAMS.theme) || '').toLowerCase();
@@ -69,6 +84,7 @@ const updateThemeButtons = (icon, label) => {
 
 const applyTheme = (theme) => {
   document.documentElement.setAttribute('data-theme', theme);
+  updateMetaThemeColor(theme);
 
   if (themeMode === THEME_MODE.auto) {
     updateThemeButtons('🌓', 'AUTO');

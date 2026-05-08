@@ -29,7 +29,11 @@ body {
 }
 
 section {
-  padding: 88px 0;
+  padding: 72px 0;
+
+  @include m.bp-md {
+    padding: 64px 0;
+  }
 
   @include m.bp-sm {
     padding: 56px 0;

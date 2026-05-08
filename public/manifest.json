@@ -1,10 +1,12 @@
 {
-  "name": "Sergio Suárez Gil Portfolio",
-  "short_name": "Portfolio",
+  "name": "Sergio Suárez Gil — Senior Full Stack · Tech Lead",
+  "short_name": "Sergio Suárez",
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
-  "background_color": "#f8f8f8",
-  "theme_color": "#0078d4",
+  "orientation": "portrait",
+  "background_color": "#020610",
+  "theme_color": "#020610",
   "description": "Senior Full Stack Developer & Tech Lead. 14+ years building distributed systems, payment platforms, and AI-augmented engineering.",
   "icons": [
     {
@@ -15,7 +17,8 @@
     {
       "src": "favicon.svg",
       "sizes": "any",
-      "type": "image/svg+xml"
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
     }
   ]
 }

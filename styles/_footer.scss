@@ -1,5 +1,5 @@
 footer {
-  padding: 24px 0;
+  padding: 24px 0 calc(24px + env(safe-area-inset-bottom));
   border-top: 1px solid var(--gb);
   text-align: center;
   position: relative;
@@ -7,7 +7,7 @@ footer {
 
   p {
     font-size: 11px;
-    color: var(--tm);
+    color: var(--ts);
     font-family: var(--m);
     letter-spacing: 0.5px;
   }
