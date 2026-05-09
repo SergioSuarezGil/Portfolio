@@ -138,10 +138,14 @@
     padding: 14px 15px;
   }
 
-  &:hover {
+  &:not(&--static):hover {
     border-color: var(--ac);
     background: rgba(59, 158, 255, 0.06);
     transform: translateY(-2px);
+  }
+
+  &--static {
+    cursor: default;
   }
 
   &__icon {
@@ -153,6 +157,22 @@
     @media (max-width: 820px) {
       font-size: 20px;
       width: 28px;
+    }
+
+    &--svg {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      svg {
+        width: 24px;
+        height: 24px;
+
+        @media (max-width: 820px) {
+          width: 20px;
+          height: 20px;
+        }
+      }
     }
   }
 

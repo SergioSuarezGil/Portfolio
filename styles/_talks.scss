@@ -129,6 +129,8 @@
     position: relative;
     z-index: 1;
     width: min(980px, 100%);
+    max-height: calc(100vh - 48px);
+    max-height: calc(100dvh - 48px);
     overflow: hidden;
     border: 1px solid var(--gb);
     border-radius: var(--r);
@@ -181,5 +183,7 @@
 
   @include m.bp-sm {
     padding: 12px;
+    padding-top: max(12px, env(safe-area-inset-top));
+    padding-bottom: max(12px, env(safe-area-inset-bottom));
   }
 }

@@ -83,7 +83,28 @@
         "address": {
           "@type": "PostalAddress",
           "addressLocality": "Valladolid",
+          "addressRegion": "Castilla y León",
           "addressCountry": "ES"
+        },
+        "birthPlace": {
+          "@type": "Place",
+          "name": "Santiago de Compostela",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Santiago de Compostela",
+            "addressRegion": "Galicia",
+            "addressCountry": "ES"
+          }
+        },
+        "homeLocation": {
+          "@type": "Place",
+          "name": "Valladolid",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Valladolid",
+            "addressRegion": "Castilla y León",
+            "addressCountry": "ES"
+          }
         },
         "knowsAbout": [
           "Node.js",
@@ -1729,7 +1750,18 @@
                 target="_blank"
                 rel="noopener noreferrer"
                 class="social-card"
-                ><span class="social-card__icon">📝</span>
+                ><span class="social-card__icon social-card__icon--svg" aria-hidden="true">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <title>Dev.to</title>
+                    <path
+                      d="M7.42 10.05c-.18-.16-.46-.25-.83-.25H6v4.4h.59c.37 0 .65-.09.83-.26.18-.17.27-.45.27-.84v-2.21c.01-.39-.09-.67-.27-.84zM0 4.94v14.12h24V4.94zm8.56 5.91c0 .87-.27 1.59-.81 2.16-.54.57-1.27.86-2.18.86H3.4V8.13h2.23c.91 0 1.64.29 2.18.86.54.57.81 1.29.81 2.16zm5.06-1.91h-2.46v1.66h1.5v1.6h-1.5v1.66h2.46v1.6h-2.69c-.55 0-1.04-.45-1.04-1.01v-6.1c0-.56.49-1.01 1.04-1.01h2.69zm6.31 6.07c-.21.6-.55.88-1.13.88h-.71c-.58 0-.92-.27-1.13-.88l-1.99-7.06h1.62l1.83 6.62 1.83-6.62h1.62z"
+                    />
+                  </svg>
+                </span>
                 <div>
                   <div class="social-card__name">Dev.to</div>
                   <div class="social-card__handle">SergioSuarezGil</div>
@@ -1738,25 +1770,36 @@
               <a
                 href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#115;&#111;&#121;&#64;&#115;&#101;&#114;&#103;&#105;&#111;&#115;&#117;&#97;&#114;&#101;&#122;&#103;&#105;&#108;&#46;&#99;&#111;&#109;"
                 class="social-card"
-                ><span class="social-card__icon">✉</span>
+                ><span class="social-card__icon social-card__icon--svg" aria-hidden="true">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <title>Email</title>
+                    <rect x="3" y="5" width="18" height="14" rx="2" />
+                    <path d="m3 7 9 6 9-6" />
+                  </svg>
+                </span>
                 <div>
                   <div class="social-card__name">Email</div>
                   <div class="social-card__handle">
-                    &#115;&#111;&#121;&#64;&#115;&#101;&#114;&#103;&#105;&#111;&#115;&#117;&#97;&#114;&#101;&#122;&#103;&#105;&#108;&#46;&#99;&#111;&#109;
+                    &#115;&#111;&#121;&#64;<wbr />&#115;&#101;&#114;&#103;&#105;&#111;&#115;&#117;&#97;&#114;&#101;&#122;&#103;&#105;&#108;&#46;&#99;&#111;&#109;
                   </div>
                 </div></a
               >
-              <a
-                href="https://sergiosuarezgil.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="social-card"
-                ><span class="social-card__icon">🌐</span>
+              <div class="social-card social-card--static">
+                <span class="social-card__icon">📍</span>
                 <div>
-                  <div class="social-card__name">Web</div>
-                  <div class="social-card__handle">sergiosuarezgil.com</div>
-                </div></a
-              >
+                  <div class="social-card__name">Valladolid · Spain</div>
+                  <div class="social-card__handle en">Galician roots 🌳</div>
+                  <div class="social-card__handle es">Raíces gallegas 🌳</div>
+                </div>
+              </div>
             </div>
           </div>
           <form class="contact__form glass reveal" id="contact-form" novalidate>
