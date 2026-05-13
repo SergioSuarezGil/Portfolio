@@ -37,10 +37,38 @@
   &__description {
     font-size: clamp(16px, 1.3vw, 19px);
     color: var(--ts);
-    max-width: 600px;
     line-height: 1.8;
     margin-bottom: 32px;
     animation: fu 0.7s ease 0.15s both;
+  }
+
+  &__keywords {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 28px;
+    animation: fu 0.7s ease 0.18s both;
+  }
+
+  &__keyword {
+    font-family: var(--m);
+    font-size: 11px;
+    color: var(--ts);
+    padding: 4px 10px;
+    border: 1px solid var(--gb);
+    border-radius: 999px;
+    background: rgba(59, 158, 255, 0.03);
+    letter-spacing: 0.4px;
+    transition:
+      color 0.3s,
+      border-color 0.3s,
+      background 0.3s;
+
+    &:hover {
+      color: var(--ac);
+      border-color: var(--ac);
+      background: var(--ad);
+    }
   }
 
   &__actions {
@@ -54,9 +82,7 @@
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     gap: 14px;
-    margin-top: 48px;
-    padding-top: 28px;
-    border-top: 1px solid var(--gb);
+    margin-top: 40px;
     animation: fu 0.7s ease 0.25s both;
 
     @include m.bp-md {
