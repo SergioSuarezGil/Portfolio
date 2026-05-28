@@ -33,13 +33,6 @@ const getUrlThemeOverride = () => {
   return null;
 };
 
-const isLocalPreviewHost = () => {
-  const hostname = window.location.hostname;
-  return hostname === '127.0.0.1' || hostname === 'localhost';
-};
-
-const shouldForceSystemThemeSync = () => isLocalPreviewHost() && getUrlThemeOverride() === null;
-
 const getSystemTheme = () => {
   if (typeof window.matchMedia !== 'function') {
     return UI.darkTheme;
@@ -56,10 +49,6 @@ const getInitialThemeState = () => {
   }
 
   if (urlTheme === THEME_MODE.auto) {
-    return { mode: THEME_MODE.auto, theme: getSystemTheme() };
-  }
-
-  if (isLocalPreviewHost()) {
     return { mode: THEME_MODE.auto, theme: getSystemTheme() };
   }
 
@@ -111,14 +100,6 @@ export const initThemeToggle = () => {
 
   themeButtons.forEach((button) => {
     button.addEventListener('click', () => {
-      if (shouldForceSystemThemeSync()) {
-        const currentTheme = document.documentElement.getAttribute('data-theme');
-        const nextTheme = currentTheme === UI.lightTheme ? UI.darkTheme : UI.lightTheme;
-        themeMode = THEME_MODE.manual;
-        applyTheme(nextTheme);
-        return;
-      }
-
       const currentTheme = document.documentElement.getAttribute('data-theme');
 
       if (themeMode === THEME_MODE.auto) {
@@ -151,15 +132,12 @@ export const initSystemThemeSync = () => {
   const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
 
   const handleSystemThemeChange = (event) => {
-    if (themeMode !== THEME_MODE.auto && !shouldForceSystemThemeSync()) return;
-    if (shouldForceSystemThemeSync()) {
-      themeMode = THEME_MODE.auto;
-    }
+    if (themeMode !== THEME_MODE.auto) return;
     applyTheme(event.matches ? UI.darkTheme : UI.lightTheme);
   };
 
   const syncOnWindowActivity = () => {
-    if (themeMode !== THEME_MODE.auto && !shouldForceSystemThemeSync()) return;
+    if (themeMode !== THEME_MODE.auto) return;
     applyTheme(getSystemTheme());
   };
 

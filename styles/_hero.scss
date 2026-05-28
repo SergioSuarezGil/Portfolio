@@ -52,13 +52,14 @@
 
   &__keyword {
     font-family: var(--m);
-    font-size: 11px;
-    color: var(--ts);
-    padding: 4px 10px;
-    border: 1px solid var(--gb);
-    border-radius: 999px;
-    background: rgba(59, 158, 255, 0.03);
-    letter-spacing: 0.4px;
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--ab);
+    padding: 4px 9px;
+    border: 1px solid rgba(59, 158, 255, 0.1);
+    border-radius: 7px;
+    background: rgba(59, 158, 255, 0.06);
+    letter-spacing: 0.3px;
     transition:
       color 0.3s,
       border-color 0.3s,
@@ -67,8 +68,13 @@
     &:hover {
       color: var(--ac);
       border-color: var(--ac);
-      background: var(--ad);
+      background: rgba(59, 158, 255, 0.12);
     }
+  }
+
+  [data-theme='dark'] &__keyword {
+    border-color: rgba(95, 170, 255, 0.18);
+    background: rgba(95, 170, 255, 0.1);
   }
 
   &__actions {
